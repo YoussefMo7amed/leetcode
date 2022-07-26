@@ -1,5 +1,21 @@
 class Solution {
 public:
+    int search(vector<int>& nums, int target) {
+        int indx =  0;
+        map<int, int> mp;
+        for(int i: nums){
+            mp[i] = indx++;
+        }
+        if(mp.find(target) != mp.end()){
+            return mp[target];
+        } else {
+            return -1;
+        }
+    }
+};
+==================
+class Solution {
+public:
     int search(vector<int> v, int t) {
         if(v.size() == 0)
             return -1;
@@ -22,7 +38,6 @@ public:
             }
             p2--;
         }
-    //    cout << p1 << '\t' << p2 << '\n' << idx << '\n';
         int r, l;
         if(idx!=-1)
         {
