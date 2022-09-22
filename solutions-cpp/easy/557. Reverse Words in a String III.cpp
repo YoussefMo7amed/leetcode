@@ -12,7 +12,6 @@ public:
         int i;
         for(i = 0; i <n; i++){
             if(i + 1 < n && s[i+1] == ' ' && s[i] != ' '){
-                // cout << reverseWord(s.substr(p, i-p + 1));
                 ans.append(reverseWord(s.substr(p, i-p + 1)));
                 p = i+1;
             } else {
@@ -23,9 +22,23 @@ public:
                 }
             }
         }
-        // cout << reverseWord(s.substr(p, i-p + 1));
         ans.append(reverseWord(s.substr(p, i-p + 1)));
 
+        return ans;
+    }
+};
+// or
+class Solution {
+   public:
+    string reverseWords(string s) {
+        string ans = "";
+        stringstream stream(s);
+        string word;
+        while (getline(stream, word, ' ')) {
+            reverse(word.begin(), word.end());
+            ans += word + " ";
+        }
+        ans.pop_back();
         return ans;
     }
 };
