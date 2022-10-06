@@ -22,3 +22,30 @@ class Solution {
                hasPathSum(root->right, targetSum - root->val);
     }
 };
+
+// faster solution
+
+class Solution {
+   public:
+    bool hasPathSum(TreeNode *root, int targetSum) {
+        if (!root) {
+            return false;
+        }
+        stack<pair<TreeNode *, int>> st;
+        st.push({root, root->val});
+        TreeNode *node = root;
+        int sum = root->val;
+        while (st.size()) {
+            node = st.top().first;
+            sum = st.top().second;
+            st.pop();
+            if (node->left == NULL && node->right == NULL) {
+                if (sum == targetSum) return true;
+            } else {
+                if (node->left) st.push({node->left, sum + node->left->val});
+                if (node->right) st.push({node->right, sum + node->right->val});
+            }
+        }
+        return false;
+    }
+};
